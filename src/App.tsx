@@ -1,11 +1,18 @@
-import React, { FC } from 'react';
-import { Button } from 'antd';
 import './App.css';
+import { FC } from 'react';
+import { SignIn } from './pages/sign-in';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 const App: FC = () => (
-  <div className="App">
-    <Button type="primary">That Rental Application</Button>
-  </div>
-);
+  <Router>
+    <Switch>
+      <Route exact path="/" component={SignIn} />
+    </Switch>
+  </Router>
+)
 
 export default App;
