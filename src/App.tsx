@@ -1,6 +1,6 @@
 import './App.css';
 import { FC } from 'react';
-import { SignIn } from './pages/sign-in';
+import { SignIn } from './pages/SignIn/SignIn';
 import {
   BrowserRouter as Router,
   Switch,
