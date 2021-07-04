@@ -1,4 +1,4 @@
-import './App.css';
+import './App.less';
 import { FC } from 'react';
 import { SignIn } from './pages/SignIn/SignIn';
 import {

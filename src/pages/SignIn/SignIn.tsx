@@ -3,7 +3,7 @@ import { Col, Row } from "antd";
 import Layout, { Content } from "antd/lib/layout/layout";
 
 // styles
-import './SignIn.scss';
+import './SignIn.less';
 
 
 export const SignIn: FC = () => (
@@ -14,8 +14,7 @@ export const SignIn: FC = () => (
                     <div className='left-content'></div>
                 </Col>
                 <Col xs={24} lg={14}>
-                    <div className='right-top-content'></div>
-                    <div className='right-bottom-content'></div>
+                    <span className='title'>That Rental Application</span>
                 </Col>
             </Row>
         </Content>
