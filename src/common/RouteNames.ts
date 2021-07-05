@@ -1,7 +1,7 @@
 class RouteNames {
-    static default: string = '/';
-    static signIn: string = '/sign-in';
-    static signUp: string = '/sign-up'
+  static default: string = "/";
+  static signIn: string = "/sign-in";
+  static signUp: string = "/sign-up";
 }
 
-export default RouteNames
+export default RouteNames;
