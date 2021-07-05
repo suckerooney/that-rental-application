@@ -1,6 +1,10 @@
+// My pages
+import SignInPage from './pages/SignInPage/SignInPage';
+import SignUpPage from './pages/SignUpPage/SignUpPage';
+
 import './App.less';
+import RouteNames from './common/RouteNames';
 import { FC } from 'react';
-import { SignIn } from './pages/SignIn/SignIn';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,7 +14,9 @@ import {
 const App: FC = () => (
   <Router>
     <Switch>
-      <Route exact path="/" component={SignIn} />
+      <Route exact path={RouteNames.default} component={SignInPage} />
+      <Route path={RouteNames.signIn} component={SignInPage} />
+      <Route path={RouteNames.signUp} component={SignUpPage} />
     </Switch>
   </Router>
 )
