@@ -1,9 +1,9 @@
 // Custom components
-import AppTitle from "../../common/AppTitle/AppTitle";
+import AppTitle from "../../components/AppTitle/AppTitle";
 
 import "./SignInPage.less";
-import AuthTemplate from "../templates/AuthTemplate/AuthTemplate";
-import RouteNames from "../../common/RouteNames";
+import AuthLayout from "../../layouts/AuthLayout";
+import Routes from "../../Routes";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { Button, Row, Typography } from "antd";
@@ -11,7 +11,7 @@ import { Button, Row, Typography } from "antd";
 const { Text } = Typography;
 
 const SignInPage: FC = () => (
-  <AuthTemplate>
+  <AuthLayout>
     <Row justify="center">
       <AppTitle />
     </Row>
@@ -19,13 +19,13 @@ const SignInPage: FC = () => (
       <Text>Sign In!</Text>
     </Row>
     <Row justify="center">
-      <Link to={RouteNames.signUp}>
+      <Link to={Routes.signUp}>
         <Button>
           <Text>Sign Up Here</Text>
         </Button>
       </Link>
     </Row>
-  </AuthTemplate>
+  </AuthLayout>
 );
 
 export default SignInPage;

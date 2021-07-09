@@ -1,4 +1,4 @@
-import "./AuthTemplate.less";
+import "./AuthLayout.less";
 import { FC } from "react";
 import { Col, Row, Layout } from "antd";
 
