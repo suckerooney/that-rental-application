@@ -1,55 +1,37 @@
 import "./SignInPage.less";
 import AuthLayout from "../../layouts/AuthLayout";
-import Routes from "../../Routes";
+import Routes from "../../common/Routes";
 import DisplayText from "../../components/DisplayText/DisplayText";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { Button, Row, Form, Input, Typography, Divider } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import GoogleButton from "react-google-button";
+import { EmailRules, PasswordRules } from "../../common/FormRules";
 
 const { Text } = Typography;
 
 const SignInPage: FC = () => {
-  const onFinish = (values: any) => {
+  const onSubmit = (values: any) => {
     console.log("Received values of form: ", values);
   };
 
   return (
     <AuthLayout>
       <Row justify="center">
-        <Form
-          name="sign-in"
-          className="sign-in-form"
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-        >
+        <Form name="sign-in" className="sign-in-form" onFinish={onSubmit}>
           <Form.Item>
-            <DisplayText>Sign In</DisplayText>
+            <DisplayText>Sign in</DisplayText>
           </Form.Item>
-          <Form.Item
-            name="email"
-            validateTrigger="onBlur"
-            rules={[
-              {
-                required: true,
-                message: "Please enter a valid email",
-                type: "email",
-              },
-            ]}
-          >
+          <Form.Item name="email" validateTrigger="onBlur" rules={EmailRules}>
             <Input
-              prefix={<MailOutlined className="form-input-icon" />}
+              addonBefore={<MailOutlined className="form-input-icon" />}
               placeholder="Email"
             />
           </Form.Item>
-          <Form.Item
-            name="password"
-            rules={[{ required: true, message: "Please enter your password" }]}
-          >
-            <Input
-              prefix={<LockOutlined className="form-input-icon" />}
-              type="password"
+          <Form.Item name="password" rules={PasswordRules}>
+            <Input.Password
+              addonBefore={<LockOutlined className="form-input-icon" />}
               placeholder="Password"
             />
           </Form.Item>
@@ -64,7 +46,7 @@ const SignInPage: FC = () => {
             >
               Sign In
             </Button>
-            Or <Link to={Routes.signUp}>Sign Up Here</Link>
+            Or <Link to={Routes.signUp}>Sign up here</Link>
           </Form.Item>
           <Form.Item>
             <Divider>

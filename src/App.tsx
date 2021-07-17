@@ -3,7 +3,7 @@ import SignInPage from "./pages/SignInPage/SignInPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 
 import "./App.less";
-import Routes from "./Routes";
+import Routes from "./common/Routes";
 import { FC } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
