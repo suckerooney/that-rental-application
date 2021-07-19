@@ -2,7 +2,12 @@ import "./AuthLayout.less";
 import { FC } from "react";
 import { Col, Row, Layout, Skeleton } from "antd";
 import WrittenTitle from "../components/WrittenTitle/WrittenTitle";
-import { Mobile, Desktop } from "../components/Breakpoints";
+import {
+  Mobile,
+  Desktop,
+  Phone,
+  TabletAndDesktop,
+} from "../components/Breakpoints";
 import DisplayText from "../components/DisplayText/DisplayText";
 
 const { Content } = Layout;
@@ -41,7 +46,18 @@ const AuthTemplate: FC = (props) => {
                 />
               </Row>
             </Mobile>
-            {props.children}
+            <Row>
+              <TabletAndDesktop>
+                <Col flex="auto" />
+                <Col flex={"400px"}>{props.children}</Col>
+                <Col flex="auto" />
+              </TabletAndDesktop>
+              <Phone>
+                <Col xs={1} />
+                <Col xs={22}>{props.children}</Col>
+                <Col xs={1} />
+              </Phone>
+            </Row>
           </Col>
         </Row>
       </Content>
