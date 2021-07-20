@@ -15,6 +15,7 @@ import {
   LockOutlined,
   LockFilled,
 } from "@ant-design/icons";
+import firebase from "../../../../firebase";
 
 const { Text, Paragraph } = Typography;
 
@@ -25,39 +26,32 @@ enum FormFieldNames {
   confirmPassword = "confirm-password",
 }
 
-const mockSignUp = async (values: SignUpValues): Promise<string | null> => {
-  console.log(
-    `Signing up with values \nname: ${values.name}\nemail: ${values.email}\npassword: ${values.password}`
-  );
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-  return "Email already in use";
-};
-
 const SignInForm: FC = () => {
   const [form] = Form.useForm<SignUpValues>();
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>();
 
-  const onFinish = async (values: SignUpValues) => {
+  const signUp = (values: SignUpValues) => {
     setLoading(true);
     setErrorMessage(null);
-    let response = await mockSignUp(values);
-    if (response) {
-      setErrorMessage(response);
-      setLoading(false);
-      form.getFieldInstance(FormFieldNames.email).select();
-    } else {
-      // Sign up successful, redirect
-    }
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(values.email, values.password)
+      .then((userCred) => {
+        let user = userCred.user;
+        console.log(user!.uid);
+      })
+      .catch((error) => {
+        console.log(`${error.code}: ${error.message}`);
+        setErrorMessage(error.message);
+        setLoading(false);
+        form.getFieldInstance(FormFieldNames.email).select();
+      });
   };
 
   return (
-    <Form
-      name="sign-up"
-      form={form}
-      className="sign-up-form"
-      onFinish={onFinish}
-    >
+    <Form name="sign-up" form={form} className="sign-up-form" onFinish={signUp}>
       <Form.Item
         name={FormFieldNames.name}
         validateTrigger="onBlur"
