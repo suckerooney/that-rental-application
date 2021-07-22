@@ -5,6 +5,7 @@ import { EmailRules, PasswordRules } from "../../../../common/FormRules";
 import { Button, Row, Form, Input, Spin, Typography } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import Auth from "../../../../firebase/Auth";
 
 const { Text } = Typography;
 
@@ -13,30 +14,21 @@ enum FormFieldNames {
   password = "password",
 }
 
-const mockSignIn = async (values: SignInValues): Promise<string | null> => {
-  console.log(
-    `Signing with these creds \nemail: ${values.email}\npassword: ${values.password}`
-  );
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-  return "Invalid email or password";
-};
 const SignInForm: FC = () => {
   const [form] = Form.useForm<SignInValues>();
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>();
 
-  const onFinish = async (values: SignInValues) => {
+  const onFinish = (values: SignInValues) => {
     setLoading(true);
     setErrorMessage(null);
-    let response = await mockSignIn(values);
-    if (response) {
-      setErrorMessage(response);
+
+    Auth.signIn(values, (error: string) => {
+      setErrorMessage(error);
       setLoading(false);
       form.setFieldsValue({ password: undefined });
       form.getFieldInstance(FormFieldNames.password).focus();
-    } else {
-      // Sign In successful, redirect
-    }
+    });
   };
 
   return (

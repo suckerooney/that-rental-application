@@ -15,7 +15,7 @@ import {
   LockOutlined,
   LockFilled,
 } from "@ant-design/icons";
-import firebase from "../../../../firebase";
+import Auth from "../../../../firebase/Auth";
 
 const { Text, Paragraph } = Typography;
 
@@ -31,27 +31,24 @@ const SignInForm: FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>();
 
-  const signUp = (values: SignUpValues) => {
+  const createAccount = (values: SignUpValues) => {
     setLoading(true);
     setErrorMessage(null);
 
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(values.email, values.password)
-      .then((userCred) => {
-        let user = userCred.user;
-        console.log(user!.uid);
-      })
-      .catch((error) => {
-        console.log(`${error.code}: ${error.message}`);
-        setErrorMessage(error.message);
-        setLoading(false);
-        form.getFieldInstance(FormFieldNames.email).select();
-      });
+    Auth.createAccount(values, (error) => {
+      setErrorMessage(error);
+      setLoading(false);
+      form.getFieldInstance(FormFieldNames.email).select();
+    });
   };
 
   return (
-    <Form name="sign-up" form={form} className="sign-up-form" onFinish={signUp}>
+    <Form
+      name="sign-up"
+      form={form}
+      className="sign-up-form"
+      onFinish={createAccount}
+    >
       <Form.Item
         name={FormFieldNames.name}
         validateTrigger="onBlur"
