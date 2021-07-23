@@ -29,6 +29,10 @@ class Auth {
         errorCallback(message);
       });
   }
+
+  static signOut() {
+    firebase.auth().signOut();
+  }
 }
 
 export default Auth;
