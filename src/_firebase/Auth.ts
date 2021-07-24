@@ -30,6 +30,11 @@ class Auth {
       });
   }
 
+  static googleAuthenticate() {
+    let provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider);
+  }
+
   static signOut() {
     firebase.auth().signOut();
   }

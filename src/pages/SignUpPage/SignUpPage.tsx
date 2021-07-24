@@ -3,6 +3,7 @@ import "./SignUpPage.less";
 
 // App Components
 import DisplayText from "components/DisplayText/DisplayText";
+import Auth from "_firebase/Auth";
 import AuthLayout from "layouts/AuthLayout";
 
 // Page Components
@@ -29,7 +30,11 @@ const SignUpPage: FC = () => {
         </Divider>
       </Row>
       <Row justify="center">
-        <GoogleButton label="Sign up with Google" className="google-button" />
+        <GoogleButton
+          onClick={Auth.googleAuthenticate}
+          label="Sign up with Google"
+          className="google-button"
+        />
       </Row>
     </AuthLayout>
   );

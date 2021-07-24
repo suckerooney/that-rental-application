@@ -1,4 +1,5 @@
 import { FC } from "react";
+import Auth from "_firebase/Auth";
 import "./SignInPage.less";
 
 // App components
@@ -29,7 +30,10 @@ const SignInPage: FC = () => {
         </Divider>
       </Row>
       <Row justify="center">
-        <GoogleButton className="google-button" />
+        <GoogleButton
+          onClick={Auth.googleAuthenticate}
+          className="google-button"
+        />
       </Row>
     </AuthLayout>
   );
