@@ -12,6 +12,8 @@ import SignInForm from "./components/SignInForm/SignInForm";
 // Pacakges
 import { Row, Typography, Divider } from "antd";
 import GoogleButton from "react-google-button";
+import { Link } from "react-router-dom";
+import Routes from "common/Routes";
 
 const { Text } = Typography;
 
@@ -34,6 +36,12 @@ const SignInPage: FC = () => {
           onClick={Auth.googleAuthenticate}
           className="google-button"
         />
+      </Row>
+
+      <Row justify="center" className="continue-application-button">
+        <Link to={Routes.applicantSignIn}>
+          <b>Applicant? </b> Continue your application here.
+        </Link>
       </Row>
     </AuthLayout>
   );

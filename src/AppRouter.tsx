@@ -7,6 +7,7 @@ import AuthContext from "contexts/AuthContext/AuthContext";
 import SignInPage from "pages/SignInPage/SignInPage";
 import SignUpPage from "pages/SignUpPage/SignUpPage";
 import ApplicationsPage from "pages/ApplicationsPage/ApplicationsPage";
+import ApplicantSignInPage from "pages/ApplicantSignInPage/ApplicantSignInPage";
 import GuardedRoute from "components/GuardedRoute";
 
 // Packages
@@ -47,6 +48,12 @@ const AppRouter: FC = () => {
           component={ApplicationsPage}
           authType={auth.type}
           allowed={[AuthType.landlord]}
+        />
+        <GuardedRoute
+          path={Routes.applicantSignIn}
+          component={ApplicantSignInPage}
+          authType={auth.type}
+          allowed={[AuthType.none, AuthType.email_unverified]}
         />
       </Switch>
     </Router>
