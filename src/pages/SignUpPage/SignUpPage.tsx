@@ -1,10 +1,16 @@
 import { FC } from "react";
-import DisplayText from "../../components/DisplayText/DisplayText";
 import "./SignUpPage.less";
-import AuthLayout from "../../layouts/AuthLayout";
+
+// App Components
+import DisplayText from "components/DisplayText/DisplayText";
+import AuthLayout from "layouts/AuthLayout";
+
+// Page Components
+import SignUpForm from "./components/SignUpForm/SignUpForm";
+
+// Packages
 import { Row, Typography, Divider } from "antd";
 import GoogleButton from "react-google-button";
-import SignUpForm from "./components/SignUpForm/SignUpForm";
 
 const { Text } = Typography;
 

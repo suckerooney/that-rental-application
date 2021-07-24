@@ -1,10 +1,16 @@
-import "./SignInPage.less";
-import AuthLayout from "../../layouts/AuthLayout";
-import DisplayText from "../../components/DisplayText/DisplayText";
 import { FC } from "react";
+import "./SignInPage.less";
+
+// App components
+import AuthLayout from "layouts/AuthLayout";
+import DisplayText from "components/DisplayText/DisplayText";
+
+// Page components
+import SignInForm from "./components/SignInForm/SignInForm";
+
+// Pacakges
 import { Row, Typography, Divider } from "antd";
 import GoogleButton from "react-google-button";
-import SignInForm from "./components/SignInForm/SignInForm";
 
 const { Text } = Typography;
 

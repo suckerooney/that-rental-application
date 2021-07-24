@@ -1,8 +1,8 @@
-import Title from "antd/lib/typography/Title";
 import { FC } from "react";
-
-// styles
 import "./WrittenTitle.less";
+
+//Packages
+import Title from "antd/lib/typography/Title";
 
 type Props = {
   text: string;

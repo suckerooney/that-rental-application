@@ -1,21 +1,23 @@
 import { FC, useState } from "react";
-import "./SignUpForm.less";
-import Routes from "../../../../common/Routes";
-import { Link } from "react-router-dom";
-import { Button, Row, Typography, Form, Input, Spin } from "antd";
+import Auth from "_firebase/Auth";
+import Routes from "common/Routes";
 import {
   NameRules,
   EmailRules,
   PasswordCreationRules,
   ConfirmPasswordRules,
-} from "../../../../common/FormRules";
+} from "common/FormRules";
+import "./SignUpForm.less";
+
+// Packages
+import { Link } from "react-router-dom";
+import { Button, Row, Typography, Form, Input, Spin } from "antd";
 import {
   UserOutlined,
   MailOutlined,
   LockOutlined,
   LockFilled,
 } from "@ant-design/icons";
-import Auth from "../../../../firebase/Auth";
 
 const { Text, Paragraph } = Typography;
 

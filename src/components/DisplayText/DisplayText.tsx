@@ -1,6 +1,8 @@
-import Text from "antd/lib/typography/Text";
 import { FC } from "react";
 import "./DisplayText.less";
+
+// Packages
+import Text from "antd/lib/typography/Text";
 
 type Props = {
   size?: "sm" | "md" | "lg";

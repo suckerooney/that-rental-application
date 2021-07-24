@@ -1,13 +1,15 @@
-// My pages
-import SignInPage from "./pages/SignInPage/SignInPage";
-import SignUpPage from "./pages/SignUpPage/SignUpPage";
-import ApplicationsPage from "./pages/ApplicationsPage/ApplicationsPage";
-
-import "./App.less";
-import Routes from "./common/Routes";
 import { FC, useContext } from "react";
+import Routes from "common/Routes";
+import "./App.less";
+
+// App Components
+import AuthProvider, { AuthContext } from "components/AuthProvider";
+import SignInPage from "pages/SignInPage/SignInPage";
+import SignUpPage from "pages/SignUpPage/SignUpPage";
+import ApplicationsPage from "pages/ApplicationsPage/ApplicationsPage";
+
+// Packages
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import AuthProvider, { AuthContext } from "./firebase/AuthProvider";
 
 const App: FC = () => {
   const auth = useContext(AuthContext);

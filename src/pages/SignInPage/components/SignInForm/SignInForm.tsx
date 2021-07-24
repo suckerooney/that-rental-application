@@ -1,11 +1,13 @@
 import { FC, useState } from "react";
+import Routes from "common/Routes";
+import { EmailRules, PasswordRules } from "common/FormRules";
+import Auth from "_firebase/Auth";
 import "./SignInForm.less";
-import Routes from "../../../../common/Routes";
-import { EmailRules, PasswordRules } from "../../../../common/FormRules";
+
+// Packages
 import { Button, Row, Form, Input, Spin, Typography } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import Auth from "../../../../firebase/Auth";
 
 const { Text } = Typography;
 

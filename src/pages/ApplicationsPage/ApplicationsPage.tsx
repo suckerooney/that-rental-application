@@ -1,6 +1,8 @@
 import { FC } from "react";
+import Auth from "_firebase/Auth";
+
+// Packages
 import { Button, Row } from "antd";
-import Auth from "../../firebase/Auth";
 
 const ApplicationsPage: FC = () => (
   <Row justify="center">

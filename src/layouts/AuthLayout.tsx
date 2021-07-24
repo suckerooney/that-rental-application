@@ -1,14 +1,18 @@
-import "./AuthLayout.less";
 import { FC } from "react";
-import { Col, Row, Layout, Skeleton } from "antd";
-import WrittenTitle from "../components/WrittenTitle/WrittenTitle";
+import "./AuthLayout.less";
+
+// App Components
+import WrittenTitle from "components/WrittenTitle/WrittenTitle";
+import DisplayText from "components/DisplayText/DisplayText";
 import {
   Mobile,
   Desktop,
   Phone,
   TabletAndDesktop,
-} from "../components/Breakpoints";
-import DisplayText from "../components/DisplayText/DisplayText";
+} from "components/Breakpoints";
+
+// Packages
+import { Col, Row, Layout, Skeleton } from "antd";
 
 const { Content } = Layout;
 
