@@ -20,9 +20,9 @@ const ApplicantSignInPage: FC = () => {
       <Row>
         <PhoneSignInForm />
       </Row>
-      <Row>
-        <Paragraph className="form-message" type="secondary">
-          Your phone number is needed in order authenticate and continue your
+      <Row className="form-message">
+        <Paragraph type="secondary">
+          Your phone number is required in order authenticate and continue your
           application. Once submitted, you will recieve a verification code.
         </Paragraph>
       </Row>

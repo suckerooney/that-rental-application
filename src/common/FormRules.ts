@@ -79,9 +79,14 @@ export const ConfirmPasswordRules: Rule[] = [
 ];
 
 // Phone Rules
+const phonePattern: RegExp = /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/;
 export const PhoneRules: Rule[] = [
   {
     required: true,
-    message: "",
+    message: "Phone number required",
+  },
+  {
+    pattern: phonePattern,
+    message: "Invalid phone number",
   },
 ];
