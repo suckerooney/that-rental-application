@@ -16,7 +16,11 @@ import { Col, Row, Layout, Skeleton } from "antd";
 
 const { Content } = Layout;
 
-const AuthTemplate: FC = (props) => {
+type Props = {
+  message?: string;
+};
+
+const AuthTemplate: FC<Props> = ({ children, message }) => {
   return (
     <Layout>
       <Content>
@@ -30,11 +34,11 @@ const AuthTemplate: FC = (props) => {
                   level={3}
                 />
               </Row>
-              <Row>
-                <DisplayText varient="light">
-                  Automate your rental application
-                </DisplayText>
-              </Row>
+              {message && (
+                <Row>
+                  <DisplayText varient="light">{message}</DisplayText>
+                </Row>
+              )}
               <Row>
                 <Skeleton active paragraph={{ rows: 10 }} />
               </Row>
@@ -53,12 +57,12 @@ const AuthTemplate: FC = (props) => {
             <Row>
               <TabletAndDesktop>
                 <Col flex="auto" />
-                <Col flex={"400px"}>{props.children}</Col>
+                <Col flex={"400px"}>{children}</Col>
                 <Col flex="auto" />
               </TabletAndDesktop>
               <Phone>
                 <Col xs={1} />
-                <Col xs={22}>{props.children}</Col>
+                <Col xs={22}>{children}</Col>
                 <Col xs={1} />
               </Phone>
             </Row>

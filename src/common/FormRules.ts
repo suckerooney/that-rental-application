@@ -77,3 +77,11 @@ export const ConfirmPasswordRules: Rule[] = [
     },
   }),
 ];
+
+// Phone Rules
+export const PhoneRules: Rule[] = [
+  {
+    required: true,
+    message: "",
+  },
+];

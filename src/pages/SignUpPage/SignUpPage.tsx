@@ -17,7 +17,7 @@ const { Text } = Typography;
 
 const SignUpPage: FC = () => {
   return (
-    <AuthLayout>
+    <AuthLayout message="Automate your rental application">
       <Row>
         <DisplayText>Sign up</DisplayText>
       </Row>
