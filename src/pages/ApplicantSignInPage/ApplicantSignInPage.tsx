@@ -4,7 +4,7 @@ import "./ApplicantSignInPage.less";
 // App components
 import DisplayText from "components/DisplayText/DisplayText";
 import AuthLayout from "layouts/AuthLayout";
-import PhoneSignInForm from "./components/PhoneSignInForm/PhoneSignInForm";
+import EmailSignInForm from "./components/EmailSignInForm/EmailSignInForm";
 
 // Pacakges
 import { Row, Typography } from "antd";
@@ -15,15 +15,16 @@ const ApplicantSignInPage: FC = () => {
   return (
     <AuthLayout message="Continue your application">
       <Row>
-        <DisplayText size="sm">Enter your phone number</DisplayText>
+        <DisplayText size="sm">Enter your email</DisplayText>
       </Row>
       <Row>
-        <PhoneSignInForm />
+        <EmailSignInForm />
       </Row>
       <Row className="form-message">
         <Paragraph type="secondary">
-          Your phone number is required in order authenticate and continue your
-          application. Once submitted, you will recieve a verification code.
+          Your email is required in order authenticate and continue your
+          application. Once submitted, you will recieve a link that will
+          automatically sign you in.
         </Paragraph>
       </Row>
     </AuthLayout>
