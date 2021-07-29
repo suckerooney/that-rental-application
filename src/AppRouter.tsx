@@ -8,6 +8,7 @@ import SignInPage from "pages/SignInPage/SignInPage";
 import SignUpPage from "pages/SignUpPage/SignUpPage";
 import ApplicationsPage from "pages/ApplicationsPage/ApplicationsPage";
 import ApplicantSignInPage from "pages/ApplicantSignInPage/ApplicantSignInPage";
+import ApplicantAuthVerifyPage from "pages/ApplicantAuthVerifyPage/ApplicantAuthVerifyPage";
 import GuardedRoute from "components/GuardedRoute";
 
 // Packages
@@ -47,11 +48,17 @@ const AppRouter: FC = () => {
           path={Routes.applications}
           component={ApplicationsPage}
           authType={auth.type}
-          allowed={[AuthType.landlord]}
+          allowed={[AuthType.landlord, AuthType.applicant]}
         />
         <GuardedRoute
           path={Routes.applicantSignIn}
           component={ApplicantSignInPage}
+          authType={auth.type}
+          allowed={[AuthType.none, AuthType.email_unverified]}
+        />
+        <GuardedRoute
+          path={Routes.applicantAuthVerify}
+          component={ApplicantAuthVerifyPage}
           authType={auth.type}
           allowed={[AuthType.none, AuthType.email_unverified]}
         />

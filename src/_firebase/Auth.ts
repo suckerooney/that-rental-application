@@ -1,4 +1,5 @@
 import firebase from "./firebase";
+import Routes from "common/Routes";
 
 class Auth {
   static signIn(values: SignInValues, errorCallback: (error: string) => void) {
@@ -36,22 +37,24 @@ class Auth {
   }
 
   // Test
-  static phoneAuthenticate() {
-    var applicationVerifier = new firebase.auth.RecaptchaVerifier(
-      "phone-sign-in-button",
-      {
-        size: "invisible",
-      }
-    );
+  static applicantSignIn(
+    email: string,
+    successCallback: () => void,
+    errorCallback: (error: string) => void
+  ) {
     firebase
       .auth()
-      .signInWithPhoneNumber("+19999999999", applicationVerifier)
-      .then((confirmationResult) => {
-        var verificationCode = window.prompt(
-          "Please enter the verification " +
-            "code that was sent to your mobile device."
-        );
-        return confirmationResult.confirm(verificationCode!);
+      .sendSignInLinkToEmail(email, {
+        url: `http://localhost:3000/${Routes.applicantAuthVerify}`,
+        handleCodeInApp: true,
+      })
+      .then(() => {
+        window.localStorage.setItem("applicantEmail", email);
+        successCallback();
+      })
+      .catch((error) => {
+        console.log(error);
+        errorCallback("Problem sending sign in link");
       });
   }
 

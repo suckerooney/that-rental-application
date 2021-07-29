@@ -1,16 +1,28 @@
 import { FC } from "react";
 import { EmailRules } from "common/FormRules";
+import Auth from "_firebase/Auth";
+import Routes from "common/Routes";
 import "./EmailSignInForm.less";
 
 // Packages
 import { Button, Form, Input, Row } from "antd";
 import { MailOutlined } from "@ant-design/icons";
+import { useHistory } from "react-router-dom";
 
 const EmailSignInForm: FC = () => {
   const [form] = Form.useForm();
+  const history = useHistory();
 
   const onFinish = (values: any) => {
-    console.log(values.email);
+    Auth.applicantSignIn(
+      values.email,
+      () => {
+        history.push(Routes.signIn);
+      },
+      (error) => {
+        console.log("error");
+      }
+    );
   };
 
   return (
