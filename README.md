@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is canceled, since apartments.com serves the same purspose. Lessoned learned research similar ideas that already exist. Still learned a lot. What was completed is hosted and found at thatrentalapplication.com (that's if the domain is still being paid for). Will use this project now as a firebase authentication template/refrence for future projects.
 
 ## Available Scripts
 
