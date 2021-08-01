@@ -3,7 +3,7 @@ import "./ApplicantSignInPage.less";
 
 // App components
 import DisplayText from "components/DisplayText/DisplayText";
-import AuthLayout from "layouts/AuthLayout";
+import AuthLayout from "layouts/AuthLayout/AuthLayout";
 import EmailSignInForm from "./components/EmailSignInForm/EmailSignInForm";
 
 // Pacakges

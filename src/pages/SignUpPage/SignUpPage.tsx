@@ -4,7 +4,7 @@ import "./SignUpPage.less";
 // App Components
 import DisplayText from "components/DisplayText/DisplayText";
 import Auth from "_firebase/Auth";
-import AuthLayout from "layouts/AuthLayout";
+import AuthLayout from "layouts/AuthLayout/AuthLayout";
 
 // Page Components
 import SignUpForm from "./components/SignUpForm/SignUpForm";

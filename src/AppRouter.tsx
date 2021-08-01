@@ -9,6 +9,8 @@ import SignUpPage from "pages/SignUpPage/SignUpPage";
 import ApplicationsPage from "pages/ApplicationsPage/ApplicationsPage";
 import ApplicantSignInPage from "pages/ApplicantSignInPage/ApplicantSignInPage";
 import ApplicantAuthVerifyPage from "pages/ApplicantAuthVerifyPage/ApplicantAuthVerifyPage";
+import ApplicantPage from "pages/ApplicantPage/ApplicantPage";
+import LoadingPage from "pages/LoadingPage/LoadingPage";
 import GuardedRoute from "components/GuardedRoute";
 
 // Packages
@@ -18,7 +20,14 @@ const AppRouter: FC = () => {
   const auth = useContext(AuthContext);
 
   const defaultPage = (): FC => {
+    if (auth.loading) {
+      return LoadingPage;
+    }
+
     switch (auth.type) {
+      case AuthType.applicant: {
+        return ApplicantPage;
+      }
       case AuthType.landlord: {
         return ApplicationsPage;
       }
@@ -48,7 +57,7 @@ const AppRouter: FC = () => {
           path={Routes.applications}
           component={ApplicationsPage}
           authType={auth.type}
-          allowed={[AuthType.landlord, AuthType.applicant]}
+          allowed={[AuthType.landlord]}
         />
         <GuardedRoute
           path={Routes.applicantSignIn}
@@ -61,6 +70,12 @@ const AppRouter: FC = () => {
           component={ApplicantAuthVerifyPage}
           authType={auth.type}
           allowed={[AuthType.none, AuthType.email_unverified]}
+        />
+        <GuardedRoute
+          path={Routes.applicant}
+          component={ApplicantPage}
+          authType={auth.type}
+          allowed={[AuthType.applicant]}
         />
       </Switch>
     </Router>

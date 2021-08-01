@@ -3,7 +3,7 @@ import Auth from "_firebase/Auth";
 import "./SignInPage.less";
 
 // App components
-import AuthLayout from "layouts/AuthLayout";
+import AuthLayout from "layouts/AuthLayout/AuthLayout";
 import DisplayText from "components/DisplayText/DisplayText";
 
 // Page components

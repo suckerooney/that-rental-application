@@ -1,11 +1,15 @@
 import firebase from "./firebase";
 import Routes from "common/Routes";
+import StorageKeys from "common/StorageKeys";
 
 class Auth {
   static signIn(values: SignInValues, errorCallback: (error: string) => void) {
     firebase
       .auth()
       .signInWithEmailAndPassword(values.email, values.password)
+      .then(() => {
+        localStorage[StorageKeys.isLandlord] = true;
+      })
       .catch(() => {
         errorCallback("Invalid email or password");
       });
@@ -20,7 +24,7 @@ class Auth {
       .createUserWithEmailAndPassword(values.email, values.password)
       .then((authCred) => {
         authCred.user?.updateProfile({ displayName: values.name });
-        authCred.user?.sendEmailVerification();
+        localStorage[StorageKeys.isLandlord] = true;
       })
       .catch((error) => {
         let message =
@@ -33,11 +37,15 @@ class Auth {
 
   static googleAuthenticate() {
     let provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider);
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(() => {
+        localStorage[StorageKeys.isLandlord] = true;
+      });
   }
 
-  // Test
-  static applicantSignIn(
+  static sendApplicantSignInLinkToEmail(
     email: string,
     successCallback: () => void,
     errorCallback: (error: string) => void
@@ -45,11 +53,11 @@ class Auth {
     firebase
       .auth()
       .sendSignInLinkToEmail(email, {
-        url: `http://localhost:3000/${Routes.applicantAuthVerify}`,
+        url: `${window.location.origin}${Routes.applicantAuthVerify}`,
         handleCodeInApp: true,
       })
       .then(() => {
-        window.localStorage.setItem("applicantEmail", email);
+        localStorage.setItem(StorageKeys.applicantEmail, email);
         successCallback();
       })
       .catch((error) => {
@@ -58,8 +66,24 @@ class Auth {
       });
   }
 
+  static applicantSignInWithEmailLink(email: string) {
+    const link = window.location.href;
+    if (firebase.auth().isSignInWithEmailLink(link)) {
+      firebase
+        .auth()
+        .signInWithEmailLink(email, link)
+        .then((result) => {
+          localStorage.removeItem(StorageKeys.applicantEmail);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
+
   static signOut() {
     firebase.auth().signOut();
+    localStorage.clear();
   }
 }
 

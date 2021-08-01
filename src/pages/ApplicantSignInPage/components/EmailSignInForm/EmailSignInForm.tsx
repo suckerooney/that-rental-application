@@ -14,7 +14,7 @@ const EmailSignInForm: FC = () => {
   const history = useHistory();
 
   const onFinish = (values: any) => {
-    Auth.applicantSignIn(
+    Auth.sendApplicantSignInLinkToEmail(
       values.email,
       () => {
         history.push(Routes.signIn);

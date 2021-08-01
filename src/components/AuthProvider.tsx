@@ -1,22 +1,26 @@
 import { FC, useState, useEffect } from "react";
 import AuthType from "common/AuthType";
 import AuthContext from "contexts/AuthContext/AuthContext";
+import StorageKeys from "common/StorageKeys";
 import firebase from "_firebase/firebase";
 
 const AuthProvider: FC = ({ children }) => {
-  const defaultAuth: Auth = { type: AuthType.none };
-  const [auth, setAuth] = useState<Auth>(defaultAuth);
+  const [auth, setAuth] = useState<Auth>({
+    type: AuthType.none,
+    loading: true,
+  });
 
   const determineUserAuth = (user: firebase.User): void => {
     const _user: User = { name: user.displayName, id: user.uid };
     let authType: AuthType;
 
-    console.log(user.providerId);
-
     if (!user.emailVerified) {
       authType = AuthType.email_unverified;
-    } else {
+      user.sendEmailVerification();
+    } else if (localStorage.getItem(StorageKeys.isLandlord)) {
       authType = AuthType.landlord;
+    } else {
+      authType = AuthType.applicant;
     }
 
     setAuth({ type: authType, user: _user });
@@ -28,11 +32,13 @@ const AuthProvider: FC = ({ children }) => {
       if (user) {
         determineUserAuth(user);
       } else {
-        setAuth(defaultAuth);
+        setAuth({ type: AuthType.none });
       }
     });
 
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+    };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
